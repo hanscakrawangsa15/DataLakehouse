@@ -1,0 +1,10 @@
+2025-05-07 00:22:03,301 - INFO - Mulai proses ETL
+2025-05-07 00:22:26,825 - INFO - ETL selesai tanpa error dan data dimuat ke database staging
+2025-05-07 00:23:19,622 - INFO - Mulai proses ETL
+2025-05-07 00:23:36,107 - INFO - ETL selesai tanpa error dan data dimuat ke database staging
+2025-05-07 00:26:24,786 - INFO - Mulai proses ETL
+2025-05-07 00:26:38,815 - INFO - ETL selesai tanpa error dan data dimuat ke database staging
+2025-05-07 00:27:43,863 - INFO - Mulai proses ETL
+2025-05-07 00:27:56,335 - INFO - ETL selesai tanpa error dan data dimuat ke database staging
+2025-05-08 22:00:18,824 - INFO - Mulai proses ETL
+2025-05-08 22:00:33,776 - INFO - ETL selesai tanpa error dan data dimuat ke database staging

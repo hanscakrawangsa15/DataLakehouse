@@ -1,0 +1,5 @@
+AdventureWorks is a great sample database for testing SQL queries!
+Just ran some machine learning models using AdventureWorks data.
+I love how AdventureWorks has so many tables to explore for analytics.
+Using AdventureWorks for my data engineering assignment. Awesome resource!
+AdventureWorks data is perfect for demonstrating business intelligence tools.

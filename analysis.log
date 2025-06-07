@@ -1,0 +1,21 @@
+2025-06-06 16:15:40,424 - __main__ - ERROR - Error during analysis: TwitterAPI.__init__() missing 1 required positional argument: 'config'
+2025-06-06 16:15:49,880 - __main__ - ERROR - Error during analysis: TwitterAPI.__init__() missing 1 required positional argument: 'config'
+2025-06-06 16:15:56,273 - __main__ - ERROR - Error during analysis: TwitterAPI.__init__() missing 1 required positional argument: 'config'
+2025-06-06 16:17:46,900 - __main__ - ERROR - Error during tweet search: 400 Bad Request
+There were errors processing your request: Reference to invalid field 'filter' (at position 75), Reference to invalid operator 'filter'. Operator is not available in current product or product packaging. Please refer to complete available operator list at http://t.co/operators. (at position 75)
+2025-06-06 16:17:46,904 - __main__ - INFO - Total tweets collected: 0
+2025-06-06 16:17:52,466 - tweepy.client - WARNING - Rate limit exceeded. Sleeping for 889 seconds.
+2025-06-06 16:27:38,966 - tweepy.client - WARNING - Rate limit exceeded. Sleeping for 303 seconds.
+2025-06-06 16:28:15,868 - tweepy.client - WARNING - Rate limit exceeded. Sleeping for 266 seconds.
+2025-06-06 16:28:16,477 - tweepy.client - WARNING - Rate limit exceeded. Sleeping for 265 seconds.
+2025-06-06 16:32:46,094 - __main__ - ERROR - Error during tweet search: 400 Bad Request
+There were errors processing your request: Reference to invalid field 'filter' (at position 206), Reference to invalid operator 'filter'. Operator is not available in current product or product packaging. Please refer to complete available operator list at http://t.co/operators. (at position 206)
+2025-06-06 16:32:46,096 - __main__ - INFO - Total tweets collected: 0
+2025-06-06 16:32:46,119 - tweepy.client - WARNING - Rate limit exceeded. Sleeping for 895 seconds.
+2025-06-06 16:32:46,218 - tweepy.client - WARNING - Rate limit exceeded. Sleeping for 895 seconds.
+2025-06-06 16:39:58,214 - __main__ - INFO - Twitter configuration loaded successfully
+2025-06-06 16:40:33,518 - tweepy.client - WARNING - Rate limit exceeded. Sleeping for 428 seconds.
+2025-06-06 16:47:46,131 - __main__ - ERROR - Error during tweet search: 400 Bad Request
+There were errors processing your request: Reference to invalid operator 'filter'. Operator is not available in current product or product packaging. Please refer to complete available operator list at http://t.co/operators. (at position 95), Reference to invalid field 'filter' (at position 95)
+2025-06-06 16:47:46,132 - __main__ - INFO - Total tweets collected: 0
+2025-06-06 16:49:38,668 - tweepy.client - WARNING - Rate limit exceeded. Sleeping for 783 seconds.

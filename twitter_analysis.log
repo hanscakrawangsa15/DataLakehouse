@@ -1,0 +1,10 @@
+2025-06-05 16:28:20,267 - INFO - Fetching up to 100 tweets...
+2025-06-05 16:28:20,568 - ERROR - Error fetching tweets: 401 Unauthorized
+89 - Invalid or expired token.
+2025-06-05 16:28:20,570 - WARNING - No tweets found
+2025-06-05 16:28:20,570 - INFO - Analysis completed
+2025-06-05 19:20:37,872 - INFO - Fetching up to 100 tweets...
+2025-06-05 19:20:38,458 - ERROR - Error fetching tweets: 401 Unauthorized
+32 - Could not authenticate you.
+2025-06-05 19:20:38,460 - WARNING - No tweets found
+2025-06-05 19:20:38,461 - INFO - Analysis completed

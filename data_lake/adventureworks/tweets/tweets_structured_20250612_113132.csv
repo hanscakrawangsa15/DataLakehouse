@@ -1,0 +1,151 @@
+tweet_id,tweet_text,timestamp,user_location,sentiment,matched_product
+1,Creating sales reports using AdventureWorks sample data.,2024-06-03 19:55:00,Yogyakarta,positive,Touring Bike
+2,AdventureWorks made fact and dimension tables easy to grasp.,2024-06-01 18:14:00,Jakarta,neutral,Helmet
+3,AdventureWorks has customer and region mapping for BI.,2024-06-02 13:49:00,Singapore,negative,Helmet
+4,Running Python ETL pipelines with AdventureWorks.,2024-06-02 09:32:00,Yogyakarta,negative,Road Tire
+5,Using AdventureWorks to simulate customer behavior analysis.,2024-06-04 14:12:00,Yogyakarta,negative,Touring Bike
+6,AdventureWorks enables great examples in data warehousing.,2024-06-04 20:40:00,Bandung,neutral,Road Tire
+7,AdventureWorks is a great dataset for testing SQL queries!,2024-06-02 03:47:00,Bandung,negative,
+8,AdventureWorks enables great examples in data warehousing.,2024-06-05 22:33:00,Medan,positive,Helmet
+9,Just completed my Power BI dashboard using AdventureWorks.,2024-06-02 22:44:00,Surabaya,positive,Touring Bike
+10,Just completed my Power BI dashboard using AdventureWorks.,2024-06-01 23:07:00,Surabaya,neutral,
+11,Just completed my Power BI dashboard using AdventureWorks.,2024-06-02 20:21:00,Singapore,negative,Mountain Bike
+12,Using AdventureWorks to simulate customer behavior analysis.,2024-06-04 23:54:00,Singapore,positive,
+13,AdventureWorks + Tableau = Perfect combination for beginners.,2024-06-03 07:10:00,Bandung,neutral,Helmet
+14,AdventureWorks is great for learning data transformation.,2024-06-01 13:45:00,Yogyakarta,positive,Bike Frame
+15,Using AdventureWorks to simulate customer behavior analysis.,2024-06-02 01:45:00,Singapore,neutral,Road Tire
+16,AdventureWorks is useful for sales analytics simulation.,2024-06-04 08:28:00,Surabaya,positive,
+17,Using AdventureWorks to simulate customer behavior analysis.,2024-06-04 06:20:00,Surabaya,neutral,Helmet
+18,Exploring KPIs from AdventureWorks for dashboards.,2024-06-03 04:43:00,Singapore,neutral,
+19,ETL pipelines run smoothly using AdventureWorks structure.,2024-06-01 15:50:00,Yogyakarta,neutral,Road Tire
+20,AdventureWorks helps me understand data modeling concepts.,2024-06-03 05:56:00,Surabaya,positive,Mountain Bike
+21,AdventureWorks is a great dataset for testing SQL queries!,2024-06-02 18:32:00,Surabaya,negative,
+22,Using AdventureWorks to simulate customer behavior analysis.,2024-06-02 21:58:00,Jakarta,neutral,Bike Frame
+23,I prefer AdventureWorks for teaching relational databases.,2024-06-04 05:44:00,Medan,negative,Touring Bike
+24,Just completed my Power BI dashboard using AdventureWorks.,2024-06-01 04:23:00,Medan,positive,Helmet
+25,Using AdventureWorks to simulate customer behavior analysis.,2024-06-05 21:21:00,Yogyakarta,negative,Touring Bike
+26,AdventureWorks + Tableau = Perfect combination for beginners.,2024-06-03 12:39:00,Jakarta,neutral,Helmet
+27,Learning joins with the AdventureWorks database is fun.,2024-06-02 21:12:00,Jakarta,positive,Touring Bike
+28,I prefer AdventureWorks for teaching relational databases.,2024-06-04 21:10:00,Bandung,neutral,
+29,Exploring KPIs from AdventureWorks for dashboards.,2024-06-01 04:05:00,Bandung,neutral,Helmet
+30,AdventureWorks made fact and dimension tables easy to grasp.,2024-06-01 14:52:00,Singapore,neutral,Bike Frame
+31,Using AdventureWorks to simulate customer behavior analysis.,2024-06-02 16:56:00,Yogyakarta,negative,Road Tire
+32,AdventureWorks is useful for sales analytics simulation.,2024-06-02 03:23:00,Singapore,positive,Road Tire
+33,AdventureWorks has comprehensive business-related tables.,2024-06-03 05:36:00,Jakarta,neutral,Mountain Bike
+34,I prefer AdventureWorks for teaching relational databases.,2024-06-05 06:03:00,Yogyakarta,positive,Bike Frame
+35,AdventureWorks is useful for sales analytics simulation.,2024-06-04 22:12:00,Yogyakarta,neutral,
+36,AdventureWorks enables great examples in data warehousing.,2024-06-03 17:02:00,Singapore,positive,Touring Bike
+37,AdventureWorks helps me understand data modeling concepts.,2024-06-02 17:23:00,Yogyakarta,negative,Bike Frame
+38,Using AdventureWorks to simulate customer behavior analysis.,2024-06-01 16:48:00,Surabaya,neutral,
+39,AdventureWorks has customer and region mapping for BI.,2024-06-03 07:01:00,Surabaya,negative,Mountain Bike
+40,AdventureWorks has customer and region mapping for BI.,2024-06-02 19:56:00,Jakarta,positive,
+41,Running Python ETL pipelines with AdventureWorks.,2024-06-03 21:28:00,Medan,neutral,Bike Frame
+42,AdventureWorks has comprehensive business-related tables.,2024-06-01 20:51:00,Surabaya,negative,Road Tire
+43,AdventureWorks has comprehensive business-related tables.,2024-06-04 08:31:00,Surabaya,neutral,Road Tire
+44,ETL pipelines run smoothly using AdventureWorks structure.,2024-06-02 08:44:00,Jakarta,negative,Mountain Bike
+45,AdventureWorks is a great dataset for testing SQL queries!,2024-06-01 09:21:00,Jakarta,neutral,
+46,AdventureWorks helps me understand data modeling concepts.,2024-06-01 15:53:00,Yogyakarta,positive,Touring Bike
+47,AdventureWorks made fact and dimension tables easy to grasp.,2024-06-01 11:19:00,Surabaya,neutral,Helmet
+48,AdventureWorks has comprehensive business-related tables.,2024-06-05 21:07:00,Medan,positive,Bike Frame
+49,Running Python ETL pipelines with AdventureWorks.,2024-06-01 18:43:00,Jakarta,negative,Touring Bike
+50,Running Python ETL pipelines with AdventureWorks.,2024-06-01 18:36:00,Singapore,negative,Helmet
+51,AdventureWorks is great for learning data transformation.,2024-06-05 15:14:00,Surabaya,negative,Mountain Bike
+52,AdventureWorks has comprehensive business-related tables.,2024-06-02 23:14:00,Bandung,positive,Mountain Bike
+53,Running Python ETL pipelines with AdventureWorks.,2024-06-04 15:59:00,Bandung,neutral,Bike Frame
+54,AdventureWorks is great for learning data transformation.,2024-06-04 05:36:00,Singapore,negative,
+55,Using AdventureWorks to simulate customer behavior analysis.,2024-06-02 01:00:00,Singapore,negative,
+56,Just completed my Power BI dashboard using AdventureWorks.,2024-06-05 03:04:00,Jakarta,negative,
+57,AdventureWorks has comprehensive business-related tables.,2024-06-01 08:11:00,Jakarta,neutral,Bike Frame
+58,AdventureWorks is great for learning data transformation.,2024-06-01 18:46:00,Bandung,neutral,Helmet
+59,Running Python ETL pipelines with AdventureWorks.,2024-06-03 06:28:00,Bandung,negative,Road Tire
+60,AdventureWorks helps me understand data modeling concepts.,2024-06-04 09:44:00,Singapore,positive,Bike Frame
+61,I prefer AdventureWorks for teaching relational databases.,2024-06-01 14:21:00,Medan,neutral,
+62,AdventureWorks + Tableau = Perfect combination for beginners.,2024-06-05 03:24:00,Surabaya,positive,Road Tire
+63,AdventureWorks enables great examples in data warehousing.,2024-06-05 22:47:00,Jakarta,negative,Helmet
+64,I prefer AdventureWorks for teaching relational databases.,2024-06-04 20:43:00,Bandung,neutral,Road Tire
+65,Exploring KPIs from AdventureWorks for dashboards.,2024-06-03 10:37:00,Medan,positive,Mountain Bike
+66,AdventureWorks is a great dataset for testing SQL queries!,2024-06-03 01:30:00,Jakarta,positive,
+67,AdventureWorks + Tableau = Perfect combination for beginners.,2024-06-04 22:14:00,Jakarta,positive,
+68,AdventureWorks product tables are useful for clustering.,2024-06-05 11:57:00,Yogyakarta,negative,Helmet
+69,I prefer AdventureWorks for teaching relational databases.,2024-06-02 23:29:00,Yogyakarta,negative,Helmet
+70,AdventureWorks provides good insights for learning OLAP.,2024-06-03 13:33:00,Yogyakarta,positive,
+71,AdventureWorks product tables are useful for clustering.,2024-06-04 00:37:00,Medan,positive,
+72,AdventureWorks has customer and region mapping for BI.,2024-06-05 16:45:00,Medan,negative,Touring Bike
+73,AdventureWorks is great for learning data transformation.,2024-06-02 12:25:00,Surabaya,positive,Road Tire
+74,AdventureWorks has comprehensive business-related tables.,2024-06-01 08:48:00,Singapore,neutral,Road Tire
+75,I prefer AdventureWorks for teaching relational databases.,2024-06-05 05:57:00,Singapore,neutral,Bike Frame
+76,AdventureWorks is a great dataset for testing SQL queries!,2024-06-05 00:34:00,Jakarta,positive,Touring Bike
+77,Just completed my Power BI dashboard using AdventureWorks.,2024-06-03 03:06:00,Singapore,negative,Mountain Bike
+78,AdventureWorks is great for learning data transformation.,2024-06-01 18:11:00,Singapore,neutral,Helmet
+79,AdventureWorks product tables are useful for clustering.,2024-06-02 23:11:00,Surabaya,neutral,
+80,Using AdventureWorks to simulate customer behavior analysis.,2024-06-05 19:48:00,Surabaya,positive,
+81,Using AdventureWorks to simulate customer behavior analysis.,2024-06-01 21:26:00,Medan,neutral,Road Tire
+82,AdventureWorks has comprehensive business-related tables.,2024-06-02 14:16:00,Yogyakarta,positive,Bike Frame
+83,Creating sales reports using AdventureWorks sample data.,2024-06-03 20:53:00,Yogyakarta,positive,Road Tire
+84,Exploring KPIs from AdventureWorks for dashboards.,2024-06-03 23:01:00,Bandung,neutral,Mountain Bike
+85,Creating sales reports using AdventureWorks sample data.,2024-06-03 05:27:00,Yogyakarta,negative,Touring Bike
+86,AdventureWorks enables great examples in data warehousing.,2024-06-03 13:48:00,Singapore,negative,Helmet
+87,AdventureWorks enables great examples in data warehousing.,2024-06-05 15:41:00,Yogyakarta,neutral,Helmet
+88,Simulating inventory flow with AdventureWorks tables.,2024-06-03 21:12:00,Surabaya,neutral,Mountain Bike
+89,Exploring KPIs from AdventureWorks for dashboards.,2024-06-04 17:55:00,Medan,negative,Road Tire
+90,AdventureWorks has comprehensive business-related tables.,2024-06-05 20:08:00,Bandung,negative,
+91,AdventureWorks helps me understand data modeling concepts.,2024-06-01 07:51:00,Surabaya,neutral,Mountain Bike
+92,AdventureWorks is a great dataset for testing SQL queries!,2024-06-04 00:58:00,Singapore,negative,Touring Bike
+93,AdventureWorks enables great examples in data warehousing.,2024-06-02 09:46:00,Yogyakarta,negative,Touring Bike
+94,AdventureWorks provides good insights for learning OLAP.,2024-06-04 19:01:00,Jakarta,negative,Bike Frame
+95,Running Python ETL pipelines with AdventureWorks.,2024-06-04 02:56:00,Medan,positive,Touring Bike
+96,AdventureWorks is useful for sales analytics simulation.,2024-06-04 03:58:00,Bandung,neutral,Road Tire
+97,AdventureWorks helps me understand data modeling concepts.,2024-06-04 06:15:00,Bandung,negative,Touring Bike
+98,Learning joins with the AdventureWorks database is fun.,2024-06-02 16:20:00,Jakarta,neutral,Helmet
+99,ETL pipelines run smoothly using AdventureWorks structure.,2024-06-04 19:46:00,Yogyakarta,positive,Road Tire
+100,I prefer AdventureWorks for teaching relational databases.,2024-06-04 16:59:00,Jakarta,neutral,Bike Frame
+101,Running Python ETL pipelines with AdventureWorks.,2024-06-03 03:00:00,Bandung,negative,Touring Bike
+102,Creating sales reports using AdventureWorks sample data.,2024-06-05 13:15:00,Medan,negative,Bike Frame
+103,AdventureWorks + Tableau = Perfect combination for beginners.,2024-06-04 23:02:00,Bandung,positive,Mountain Bike
+104,AdventureWorks has customer and region mapping for BI.,2024-06-01 01:32:00,Surabaya,positive,Road Tire
+105,Learning joins with the AdventureWorks database is fun.,2024-06-04 20:57:00,Surabaya,positive,Mountain Bike
+106,Running Python ETL pipelines with AdventureWorks.,2024-06-01 20:49:00,Medan,negative,Road Tire
+107,Exploring KPIs from AdventureWorks for dashboards.,2024-06-03 15:18:00,Jakarta,positive,Touring Bike
+108,AdventureWorks is a great dataset for testing SQL queries!,2024-06-02 17:37:00,Medan,positive,Mountain Bike
+109,AdventureWorks made fact and dimension tables easy to grasp.,2024-06-01 00:35:00,Jakarta,negative,Touring Bike
+110,AdventureWorks + Tableau = Perfect combination for beginners.,2024-06-02 23:38:00,Jakarta,negative,Touring Bike
+111,Exploring KPIs from AdventureWorks for dashboards.,2024-06-01 17:52:00,Yogyakarta,neutral,Road Tire
+112,AdventureWorks is great for learning data transformation.,2024-06-01 22:45:00,Surabaya,negative,Road Tire
+113,AdventureWorks enables great examples in data warehousing.,2024-06-03 03:21:00,Medan,positive,
+114,Just completed my Power BI dashboard using AdventureWorks.,2024-06-05 20:38:00,Singapore,positive,
+115,Simulating inventory flow with AdventureWorks tables.,2024-06-01 09:11:00,Yogyakarta,neutral,
+116,AdventureWorks provides good insights for learning OLAP.,2024-06-03 05:02:00,Medan,negative,Road Tire
+117,Just completed my Power BI dashboard using AdventureWorks.,2024-06-05 03:12:00,Singapore,negative,Bike Frame
+118,AdventureWorks product tables are useful for clustering.,2024-06-01 05:31:00,Surabaya,negative,Mountain Bike
+119,Learning joins with the AdventureWorks database is fun.,2024-06-03 12:05:00,Singapore,positive,Bike Frame
+120,I prefer AdventureWorks for teaching relational databases.,2024-06-02 07:44:00,Yogyakarta,negative,Mountain Bike
+121,Exploring KPIs from AdventureWorks for dashboards.,2024-06-04 06:23:00,Singapore,negative,Bike Frame
+122,Running Python ETL pipelines with AdventureWorks.,2024-06-04 22:59:00,Medan,negative,Touring Bike
+123,Just completed my Power BI dashboard using AdventureWorks.,2024-06-02 22:28:00,Surabaya,neutral,Touring Bike
+124,Just completed my Power BI dashboard using AdventureWorks.,2024-06-02 20:45:00,Medan,positive,Road Tire
+125,Learning joins with the AdventureWorks database is fun.,2024-06-03 17:17:00,Medan,neutral,Helmet
+126,AdventureWorks is great for learning data transformation.,2024-06-02 06:53:00,Yogyakarta,negative,
+127,Running Python ETL pipelines with AdventureWorks.,2024-06-04 15:52:00,Medan,positive,Bike Frame
+128,AdventureWorks is useful for sales analytics simulation.,2024-06-02 21:05:00,Jakarta,neutral,Touring Bike
+129,Learning joins with the AdventureWorks database is fun.,2024-06-04 21:28:00,Bandung,negative,Road Tire
+130,AdventureWorks provides good insights for learning OLAP.,2024-06-02 14:35:00,Yogyakarta,negative,Touring Bike
+131,Simulating inventory flow with AdventureWorks tables.,2024-06-01 09:50:00,Yogyakarta,positive,Mountain Bike
+132,I prefer AdventureWorks for teaching relational databases.,2024-06-02 17:53:00,Yogyakarta,negative,Road Tire
+133,Simulating inventory flow with AdventureWorks tables.,2024-06-03 19:05:00,Singapore,negative,Road Tire
+134,AdventureWorks is a great dataset for testing SQL queries!,2024-06-02 07:32:00,Yogyakarta,negative,Mountain Bike
+135,AdventureWorks made fact and dimension tables easy to grasp.,2024-06-04 08:32:00,Jakarta,negative,
+136,AdventureWorks provides good insights for learning OLAP.,2024-06-04 14:10:00,Surabaya,neutral,Bike Frame
+137,Running Python ETL pipelines with AdventureWorks.,2024-06-03 16:42:00,Medan,neutral,Road Tire
+138,AdventureWorks has customer and region mapping for BI.,2024-06-01 19:25:00,Medan,positive,Bike Frame
+139,Just completed my Power BI dashboard using AdventureWorks.,2024-06-02 14:19:00,Medan,positive,Bike Frame
+140,I prefer AdventureWorks for teaching relational databases.,2024-06-02 07:46:00,Yogyakarta,negative,Helmet
+141,AdventureWorks + Tableau = Perfect combination for beginners.,2024-06-02 05:15:00,Jakarta,neutral,
+142,AdventureWorks helps me understand data modeling concepts.,2024-06-02 08:37:00,Singapore,negative,
+143,AdventureWorks enables great examples in data warehousing.,2024-06-03 19:21:00,Bandung,positive,Touring Bike
+144,AdventureWorks has comprehensive business-related tables.,2024-06-03 10:33:00,Singapore,negative,
+145,AdventureWorks provides good insights for learning OLAP.,2024-06-02 05:30:00,Yogyakarta,neutral,Bike Frame
+146,Using AdventureWorks to simulate customer behavior analysis.,2024-06-02 06:19:00,Surabaya,negative,Mountain Bike
+147,AdventureWorks + Tableau = Perfect combination for beginners.,2024-06-02 13:34:00,Singapore,positive,
+148,I prefer AdventureWorks for teaching relational databases.,2024-06-04 09:59:00,Jakarta,negative,Road Tire
+149,AdventureWorks is useful for sales analytics simulation.,2024-06-01 06:20:00,Surabaya,neutral,Mountain Bike
+150,Simulating inventory flow with AdventureWorks tables.,2024-06-02 18:26:00,Jakarta,neutral,Bike Frame

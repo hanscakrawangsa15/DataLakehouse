@@ -1,0 +1,13 @@
+Annual Market Share Report (Extended)
+This report summarizes the extended annual market share of competing companies based on IDX
+data.
+Company A - 27%
+Company B - 18%
+Company C - 24%
+Company D - 9%
+Company E - 12%
+Company F - 5%
+Company G - 3%
+Others     - 2%
+Note: This includes additional regional and small-cap competitors.
+Source: idx.co.id/annual-reports

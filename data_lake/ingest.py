@@ -96,20 +96,26 @@ def main():
     # Get the data_lake directory path
     DATA_LAKE_DIR = Path(__file__).parent  # This file is in data_lake directory
     
+    # Define source and destination paths relative to DATA_LAKE_DIR
     operations = [
         # (source, destination, is_pdf)
-        (str(DATA_LAKE_DIR / "adventureworks" / "files" / "warehouse_temp_sensor.csv"), "data_lake/adventureworks/files/warehouse_temp_sensor.csv", False),
-        (str(DATA_LAKE_DIR / "adventureworks" / "files" / "market_share_report.pdf"), "data_lake/adventureworks/files/market_share_report.pdf", True),
-        (str(DATA_LAKE_DIR / "adventureworks" / "tweets" / "adventureworks_structured_150_tweets.txt"), "data_lake/adventureworks/tweets/adventureworks_structured_150_tweets.txt", False),
+        ("data_lake/data_lake/adventureworks/organized/warehouse_temp_sensor.csv", "adventureworks/organized/warehouse_temp_sensor.csv", False),
+        ("data_lake/data_lake/adventureworks/organized/market_share_report.pdf", "adventureworks/organized/market_share_report.pdf", True),
+        ("data_lake/data_lake/adventureworks/organized/adventureworks_structured_150_tweets.txt", "adventureworks/organized/adventureworks_structured_150_tweets.txt", False),
     ]
     
     # Process files in parallel
     with concurrent.futures.ThreadPoolExecutor() as executor:
         futures = []
         for src_rel, dst_rel, is_pdf in operations:
-            src = Path(src_rel)
+            src = DATA_LAKE_DIR.parent / src_rel  # Go up one level to account for the nested data_lake directory
             dst = DATA_LAKE_DIR / dst_rel
             
+            # Ensure source file exists
+            if not src.exists():
+                print(f"Warning: Source file not found: {src}")
+                continue
+                
             # Submit copy operation
             future = executor.submit(copy_file, src, dst)
             futures.append((future, dst, is_pdf))
@@ -119,7 +125,8 @@ def main():
             if not future.result():
                 continue
             
-            txt_path = dst.with_stem(f"{dst.stem}_raw").with_suffix('.txt')
+            # Create raw text version in the same directory
+            txt_path = dst.parent / f"{dst.stem}_raw.txt"
             if dst.suffix.lower() == '.pdf':
                 extract_pdf_text(dst, txt_path)
             elif dst.suffix.lower() == '.csv':

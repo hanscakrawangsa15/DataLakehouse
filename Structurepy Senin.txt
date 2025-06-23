@@ -51,90 +51,52 @@ def check_warehouse_data():
         check_table_exists_and_has_data(engine_dwh, table)
 
 def load_dim_competitor():
-    """Memuat data competitor dari staging_market_share_report ke dim_competitor"""
+    """Memuat data competitor ke dalam dimensi"""
     try:
         print("\nMemuat data ke dim_competitor...")
-        
-        # Query untuk mengambil data unik dari staging
-        query = """
-        SELECT DISTINCT 
-            competitor,
-            market_share_percent
-        FROM staging_market_share_report
-        WHERE competitor IS NOT NULL
-        """
-        
-        # Baca data dari staging
-        df = pd.read_sql(query, con=engine_stag)
-        
-        if df.empty:
-            print("Tidak ada data competitor di staging.")
+        df = pd.read_sql("SELECT DISTINCT company FROM staging_market_share_report", con=engine_stag)
+        df_new = df[~df['company'].isin(
+            pd.read_sql("SELECT company FROM dwh.dim_competitor", con=engine_dwh)['company']
+        )]
+
+        if df_new.empty:
+            print("Tidak ada competitor baru.")
             return
-            
-        # Tambahkan kolom competitor_id
-        df['competitor_id'] = range(1, len(df) + 1)
-        
-        # Pilih dan urutkan kolom sesuai dengan struktur dim_competitor
-        df = df[['competitor_id', 'competitor', 'market_share_percent']]
-        
-        # Simpan ke dim_competitor
-        df.to_sql(
-            'dim_competitor',
-            con=engine_dwh,
-            schema='dwh',
-            if_exists='append',
-            index=False
-        )
-        
-        print(f"Berhasil memuat {len(df)} data competitor ke dim_competitor")
-        
+
+        df_new.to_sql('dim_competitor', con=engine_dwh, schema='dwh', if_exists='append', index=False)
+        print(f"{len(df_new)} competitor berhasil dimasukkan.")
     except Exception as e:
-        print(f"Gagal memuat data ke dim_competitor: {str(e)}")
-        raise
+        print(f"Gagal memuat dim_competitor: {e}")
 
 def load_fact_competitor_share():
-    """Memuat data market share competitor ke fact_competitor_share"""
+    """Memuat data market share competitor"""
     try:
         print("\nMemuat data ke fact_competitor_share...")
+        query = """
+        SELECT s.company, s.market_share_percent, dt.time_id
+        FROM staging_market_share_report s
+        JOIN dwh.dim_competitor dc ON dc.company = s.company
+        JOIN dwh.dim_time dt ON dt.date = CURRENT_DATE
+        """
 
-        # Ambil staging dari DB staging
-        df_staging = pd.read_sql("SELECT * FROM staging_market_share_report", con=engine_stag)
-        if df_staging.empty:
-            print("❗ Tidak ada data di staging_market_share_report.")
+        df = pd.read_sql(query, con=engine_stag)
+        if df.empty:
+            print("Tidak ada data untuk dimasukkan ke fact_competitor_share.")
             return
 
-        # Ambil dimensi dari DWH
-        df_comp = pd.read_sql("SELECT competitor_id, competitor FROM dwh.dim_competitor", con=engine_dwh)
-        df_time = pd.read_sql("SELECT time_id, timestamp::date AS extraction_date FROM dwh.dim_time", con=engine_dwh)
+        comp_map = pd.read_sql("SELECT competitor_id, company FROM dwh.dim_competitor", con=engine_dwh)
+        df = df.merge(comp_map, on='company')
 
-        # Gabungkan
-        df_merged = df_staging.merge(df_comp, on='competitor', how='inner')
-        df_merged = df_merged.merge(df_time, on='extraction_date', how='inner')
-
-        # Ambil kolom yang diperlukan
-        df_final = df_merged[['competitor_id', 'market_share_percent', 'time_id']]
-
-        if df_final.empty:
-            print("❗ Data setelah merge tidak ditemukan. Pastikan competitor dan extraction_date cocok.")
-            return
-
-        # Simpan ke DWH
-        df_final.to_sql(
+        df[['competitor_id', 'market_share_percent', 'time_id']].to_sql(
             'fact_competitor_share',
             con=engine_dwh,
             schema='dwh',
             if_exists='append',
             index=False
         )
-
-        print(f"✅ Berhasil menambahkan {len(df_final)} data ke fact_competitor_share.")
-
+        print(f"{len(df)} data berhasil dimasukkan ke fact_competitor_share.")
     except Exception as e:
-        print(f"❌ Gagal memuat data ke fact_competitor_share: {str(e)}")
-        raise
-
-
-
+        print(f"Error memuat fact_competitor_share: {e}")
 
 def load_dim_tweet():
     """Memuat data tweet ke dalam dimensi"""
@@ -293,170 +255,6 @@ def load_fact_temperature():
         
     except Exception as e:
         print(f"Error saat memuat data ke fact_temperature: {str(e)}")
-
-def load_fact_competitor():
-    """Memuat data competitor dari staging_market_share_report ke fact_competitor"""
-    try:
-        print("\n=== Memulai pemuatan data fact_competitor ===")
-        
-        # Pastikan tabel fact_competitor ada
-        create_table_sql = """
-        CREATE TABLE IF NOT EXISTS dwh.fact_competitor (
-            fact_id SERIAL PRIMARY KEY,
-            competitor_id INTEGER NOT NULL,
-            time_id INTEGER NOT NULL,
-            market_share_percent NUMERIC(10,2) NOT NULL,
-            extraction_date TIMESTAMP,
-            FOREIGN KEY (competitor_id) REFERENCES dwh.dim_competitor(competitor_id),
-            FOREIGN KEY (time_id) REFERENCES dwh.dim_time(time_id),
-            UNIQUE(competitor_id, time_id)
-        )
-        """
-        
-        with engine_dwh.connect() as connection:
-            connection.execute(text(create_table_sql))
-            connection.commit()
-        print("Tabel fact_competitor siap digunakan.")
-        
-        # Debug: Hitung jumlah data di setiap tabel
-        with engine_stag.connect() as conn:
-            staging_count = conn.execute(text("SELECT COUNT(*) FROM staging_market_share_report")).scalar()
-            print(f"Jumlah data di staging_market_share_report: {staging_count}")
-            
-        with engine_dwh.connect() as conn:
-            comp_count = conn.execute(text("SELECT COUNT(*) FROM dwh.dim_competitor")).scalar()
-            time_count = conn.execute(text("SELECT COUNT(*) FROM dwh.dim_time")).scalar()
-            print(f"Jumlah data di dim_competitor: {comp_count}")
-            print(f"Jumlah data di dim_time: {time_count}")
-        
-        # Query untuk mengambil data dari staging dan menggabungkannya dengan dimensi
-        query = """
-        WITH competitor_data AS (
-            SELECT 
-                dc.competitor_id,
-                smsr.market_share_percent,
-                dt.time_id,
-                smsr.extraction_date
-            FROM staging_market_share_report smsr
-            JOIN dwh.dim_competitor dc ON TRIM(LOWER(smsr.competitor)) = TRIM(LOWER(dc.competitor))
-            JOIN dwh.dim_time dt ON smsr.time_periode = dt.time_periode
-            WHERE NOT EXISTS (
-                SELECT 1 
-                FROM dwh.fact_competitor fc 
-                WHERE fc.competitor_id = dc.competitor_id 
-                AND fc.time_id = dt.time_id
-            )
-        )
-        SELECT 
-            competitor_id,
-            market_share_percent,
-            time_id,
-            extraction_date
-        FROM competitor_data
-        """
-        
-        # Baca data yang akan dimasukkan
-        df = pd.read_sql(query, con=engine_stag)
-        
-        if df.empty:
-            print("\nTidak ada data baru yang akan dimasukkan ke fact_competitor")
-            print("Kemungkinan penyebab:")
-            print("1. Data sudah ada di fact_competitor")
-            print("2. Tidak ada kecocokan antara data di staging dengan dim_competitor/dim_time")
-            print("3. Data di dim_time belum diisi dengan benar")
-            
-            # Debug: Cek contoh data di staging
-            sample_staging = """
-            SELECT DISTINCT 
-                competitor, 
-                time_periode,
-                extraction_date 
-            FROM staging_market_share_report 
-            ORDER BY extraction_date DESC 
-            LIMIT 5
-            """
-            print("\nContoh data di staging_market_share_report:")
-            print(pd.read_sql(sample_staging, con=engine_stag))
-            
-            # Debug: Cek contoh data di dim_competitor
-            sample_comp = """
-            SELECT 
-                competitor_id, 
-                competitor, 
-                LENGTH(TRIM(competitor)) as len_trimmed,
-                LENGTH(competitor) as len_original
-            FROM dwh.dim_competitor 
-            LIMIT 5
-            """
-            print("\nContoh data di dim_competitor:")
-            print(pd.read_sql(sample_comp, con=engine_dwh))
-            
-            # Debug: Cek contoh data di dim_time
-            sample_time = """
-            SELECT 
-                time_id, 
-                time_periode,
-                year,
-                month,
-                day
-            FROM dwh.dim_time 
-            ORDER BY time_periode DESC 
-            LIMIT 5
-            """
-            print("\nContoh data di dim_time:")
-            print(pd.read_sql(sample_time, con=engine_dwh))
-            
-            return
-            
-        # Masukkan data ke fact_competitor
-        print(f"\nMenambahkan {len(df)} baris data ke fact_competitor...")
-        
-        # Insert data ke fact_competitor
-        with engine_dwh.connect() as conn:
-            # Gunakan SQL langsung untuk insert
-            insert_sql = """
-            INSERT INTO dwh.fact_competitor 
-                (competitor_id, time_id, market_share_percent, extraction_date)
-            VALUES 
-                (:competitor_id, :time_id, :market_share_percent, :extraction_date)
-            ON CONFLICT (competitor_id, time_id) DO NOTHING
-            """
-            
-            # Eksekusi untuk setiap baris
-            result = conn.execute(
-                text(insert_sql),
-                df[['competitor_id', 'time_id', 'market_share_percent', 'extraction_date']].to_dict('records')
-            )
-            conn.commit()
-            
-            print(f"✅ Berhasil menambahkan {result.rowcount} baris data ke fact_competitor")
-            
-            # Tampilkan ringkasan data yang baru ditambahkan
-            summary = pd.read_sql(
-                """
-                SELECT 
-                    dc.competitor,
-                    dt.time_periode,
-                    fc.market_share_percent,
-                    fc.extraction_date
-                FROM dwh.fact_competitor fc
-                JOIN dwh.dim_competitor dc ON fc.competitor_id = dc.competitor_id
-                JOIN dwh.dim_time dt ON fc.time_id = dt.time_id
-                ORDER BY dt.time_periode DESC, fc.market_share_percent DESC
-                LIMIT 5
-                """,
-                con=engine_dwh
-            )
-            
-            if not summary.empty:
-                print("\nRingkasan data terbaru di fact_competitor:")
-                print(summary)
-                
-    except Exception as e:
-        print(f"❌ Error saat memuat data ke fact_competitor: {str(e)}")
-        import traceback
-        traceback.print_exc()
-        raise
 
 def create_and_populate_dim_time():
     """Membuat dan mengisi tabel dim_time dengan data tanggal"""
@@ -719,76 +517,38 @@ def run_etl():
 if __name__ == "__main__":
     run_etl()
 
-# Create a new figure for the dashboard with 2 rows and 1 column
-fig_dashboard = Figure(figsize=(15, 18))
-gs = fig_dashboard.add_gridspec(3, 1, height_ratios=[1, 1, 1.5])
+# Update the visualization code in structure.py
 
-# Horizontal Bar Chart untuk Market Share
-ax_market_share = fig_dashboard.add_subplot(gs[1])
-try:
-    query = """
-    SELECT competitor, market_share_percent AS market_share
-    FROM staging_market_share_report
-    WHERE competitor IS NOT NULL
-    ORDER BY market_share DESC
-    LIMIT 10
-    """
+# Create a new figure for the dashboard
+fig_dashboard = Figure(figsize=(12, 12))
+gs = fig_dashboard.add_gridspec(2, 1, height_ratios=[1, 1])
 
-    df_market = pd.read_sql(query, con=engine_stag)
-
-    if not df_market.empty:
-        bars = ax_market_share.barh(
-            df_market['competitor'],
-            df_market['market_share'],
-            color='skyblue'
-        )
-
-        for bar in bars:
-            width = bar.get_width()
-            ax_market_share.text(
-                width + 0.5,
-                bar.get_y() + bar.get_height() / 2,
-                f'{width:.2f}%',
-                va='center'
-            )
-
-        ax_market_share.set_title('Top 10 Market Share by Competitor', fontsize=14)
-        ax_market_share.set_xlabel('Market Share (%)')
-        ax_market_share.invert_yaxis()
-        ax_market_share.grid(True, linestyle='--', alpha=0.7)
-    else:
-        ax_market_share.text(0.5, 0.5, 'Tidak ada data tersedia',
-                             ha='center', va='center', transform=ax_market_share.transAxes)
-
-except Exception as e:
-    print(f"❌ Error dalam visualisasi market share: {e}")
-    ax_market_share.text(0.5, 0.5, 'Error saat ambil data',
-                         ha='center', va='center', transform=ax_market_share.transAxes)
-
-
-
-    
-# Temperature Plot (Top subplot)
+# Temperature Plot
 ax_temp = fig_dashboard.add_subplot(gs[0])
-
-# Update the temperature plot to use staging_warehouse_temp_sensor directly
 try:
-    # Query temperature data directly from staging_warehouse_temp_sensor
+    # Query temperature data from fact_temperature joined with dim_time
     query = """
     SELECT 
-        timestamp,
-        temperature_c as temperature
-    FROM staging_warehouse_temp_sensor
-    ORDER BY timestamp
+        ft.temperature_c,
+        dt.year,
+        dt.month,
+        dt.day,
+        dt.hour
+    FROM dwh.fact_temperature ft
+    JOIN dwh.dim_time dt ON ft.time_id = dt.time_id
+    ORDER BY dt.year, dt.month, dt.day, dt.hour
     """
-    df_temp = pd.read_sql(query, con=engine_stag)
+    df_temp = pd.read_sql(query, con=engine_dwh)
     
     if not df_temp.empty:
-        # Convert timestamp to datetime if it's not already
-        df_temp['timestamp'] = pd.to_datetime(df_temp['timestamp'])
+        # Create a datetime column for plotting
+        df_temp['datetime'] = pd.to_datetime(
+            df_temp[['year', 'month', 'day', 'hour']].astype(str).agg('-'.join, axis=1),
+            format='%Y-%m-%d-%H'
+        )
         
         # Plot temperature over time
-        ax_temp.plot(df_temp['timestamp'], df_temp['temperature'], 
+        ax_temp.plot(df_temp['datetime'], df_temp['temperature_c'], 
                     marker='o', linestyle='-', color='tab:red')
         
         # Customize the plot
@@ -799,6 +559,7 @@ try:
         
         # Rotate x-axis labels for better readability
         plt.setp(ax_temp.get_xticklabels(), rotation=45, ha='right')
+        fig_dashboard.tight_layout()
         
     else:
         ax_temp.text(0.5, 0.5, 'No temperature data available', 
@@ -817,17 +578,17 @@ except Exception as e:
     ax_temp.set_xticks([])
     ax_temp.set_yticks([])
 
-# Word Cloud (Bottom subplot)
-ax_wc = fig_dashboard.add_subplot(gs[2])
+# Word Cloud
+ax_wc = fig_dashboard.add_subplot(gs[1])
 try:
-    # Fetch tweet data from staging_external_sentiment
+    # Fetch tweet data
     tweet_query = """
-    SELECT tweet_text 
-    FROM staging_external_sentiment
-    WHERE tweet_text IS NOT NULL
+    SELECT dt.tweet_text 
+    FROM dwh.dim_tweet dt
+    JOIN dwh.fact_sentiment fs ON dt.tweet_id = fs.tweet_id
     """
     
-    df_tweets = pd.read_sql(tweet_query, con=engine_stag)
+    df_tweets = pd.read_sql(tweet_query, con=engine_dwh)
     
     if not df_tweets.empty and 'tweet_text' in df_tweets.columns:
         # Combine all tweets into a single string
@@ -872,31 +633,42 @@ except Exception as e:
     ax_wc.set_xticks([])
     ax_wc.set_yticks([])
 
-# Adjust layout and display
-fig_dashboard.subplots_adjust(hspace=0.6)
-fig_dashboard.text(0.5, 0.67, '-'*100, ha='center', va='center', fontsize=8, color='gray', alpha=0.3)
-fig_dashboard.text(0.5, 0.33, '-'*100, ha='center', va='center', fontsize=8, color='gray', alpha=0.3)
-fig_dashboard.tight_layout()
-
-# Create and display the Tkinter window
+# Create the main application window
 root = tk.Tk()
-root.title("Data Warehouse Visualization")
+root.title("Data Warehouse Visualization Dashboard")
 root.geometry("1200x1000")
 
-# Create a canvas and add it to the Tkinter window
-canvas = FigureCanvasTkAgg(fig_dashboard, master=root)
+# Create a frame for the dashboard
+frame = tk.Frame(root)
+frame.pack(fill=tk.BOTH, expand=True, padx=20, pady=20)
+
+# Add a title
+title_label = tk.Label(
+    frame, 
+    text="Data Warehouse Analytics Dashboard", 
+    font=("Arial", 18, "bold")
+)
+title_label.pack(pady=(0, 20))
+
+# Create canvas for the dashboard
+canvas = FigureCanvasTkAgg(fig_dashboard, master=frame)
 canvas.draw()
 canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
 # Add a status bar
 status_bar = tk.Label(
     root, 
-    text=f"Dashboard loaded successfully | Data last updated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+    text="Dashboard loaded successfully | Data last updated: " + datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     bd=1, 
     relief=tk.SUNKEN, 
     anchor=tk.W
 )
 status_bar.pack(side=tk.BOTTOM, fill=tk.X)
 
-# Run the Tkinter event loop
+# Add some padding around the window
+root.update()
+canvas_width = canvas.get_width_height()[0]
+root.minsize(canvas_width + 40, 800)
+
+# Run the application
 root.mainloop()

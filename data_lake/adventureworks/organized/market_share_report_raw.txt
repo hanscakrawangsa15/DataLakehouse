@@ -1,28 +1,34 @@
 Annual Market Share Report
 Competitor Analysis - AdventureWorks
-Executive Summary
-This report presents an overview of the annual market share distribution among key competitors in the
-consumer goods industry. AdventureWorks holds the largest share, indicating strong performance in product
-innovation and market expansion. The following sections provide tabular data and analysis insights for
-strategic planning.
-Company
+Laporan ini menyajikan distribusi pangsa pasar tahunan di antara para pesaing utama dalam industri barang
+konsumen untuk tahun 2024. AdventureWorks memegang pangsa terbesar, menunjukkan kinerja yang kuat
+dalam inovasi produk dan ekspansi pasar. Data berikut disajikan berdasarkan dimensi waktu (dim_time) dan
+nama kompetitor (dim_competitor), agar dapat digunakan dalam sistem data warehouse.
+Time Period
+Competitor
 Market Share (%)
+2024
 AdventureWorks
 25.3%
+2024
 Contoso Ltd
 18.7%
+2024
 Fabrikam Inc
 15.2%
+2024
 Northwind Traders
 22.5%
+2024
 Tailspin Toys
 10.8%
+2024
 Proseware, Inc.
 7.5%
 Analysis and Insights
-AdventureWorks continues to lead the market with a 25.3% share, driven by consistent product quality and
-global distribution. Northwind Traders follows with 22.5%, indicating growing customer trust. Proseware, Inc.
-remains the smallest player at 7.5%, suggesting opportunities for partnerships or acquisitions. Future
-strategies may focus on digital transformation and customer personalization to maintain competitive
-advantage.
-Page 1
+AdventureWorks memimpin pasar dengan pangsa sebesar 25.3% di tahun 2024, didorong oleh kualitas
+produk yang konsisten dan distribusi global. Northwind Traders mengikuti di posisi kedua dengan 22.5%,
+menandakan kepercayaan pelanggan yang meningkat. Sementara itu, Proseware, Inc. dengan 7.5% menjadi
+pemain terkecil, membuka peluang untuk akuisisi atau kolaborasi.
+Untuk tetap unggul secara kompetitif, perusahaan disarankan untuk berfokus pada transformasi digital dan
+strategi personalisasi pelanggan.
